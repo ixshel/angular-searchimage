@@ -2,13 +2,13 @@
 /* @import'~bootstrap/dist/css/bootstrap.min.css'; */
 
 .row.make-columns {
-    -moz-column-width: 19em;
-    -webkit-column-width: 19em;
-    -moz-column-gap: 1em;
-    -webkit-column-gap:1em; 
+  -moz-column-width: 19em;
+  -webkit-column-width: 19em;
+  -moz-column-gap: 1em;
+  -webkit-column-gap: 1em;
 }
 .row.make-columns > div {
-    display: inline-block;
-    padding:  .5rem;
-    width:  100%; 
+  display: inline-block;
+  padding: 0.5rem;
+  width: 100%;
 }

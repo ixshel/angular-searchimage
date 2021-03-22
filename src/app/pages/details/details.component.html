@@ -1,1 +1,58 @@
-<p>details works!</p>
+<div class="modal-header">
+    <h4 class="modal-title">{{ data.title }}</h4>
+    <!-- <p>
+      Date: <b>{{ data.datetime + "000" | date: "mediumDate" }}</b>
+    </p> -->
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="activeModal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+  <div class="col-lg-12">
+    <ngb-carousel [interval]="false" *ngIf="data.images">
+      <ng-template *ngFor="let image of data.images" ngbSlide>
+        <div class="wrapper">
+          <img
+            [src]="image.link"
+            alt="Random first slide"
+            style="width: 100%"
+          />
+          <img
+            *ngIf="image.isImage"
+            [src]="image.link"
+            alt="Random first slide"
+            style="width: 100%"
+          />
+          <video
+            *ngIf="!image.isImage"
+            class="card-img-top"
+            [src]="image.mp4"
+            alt="Card image cap"
+            controls
+          ></video>
+        </div>
+        <div class="carousel-caption">
+          <p>{{ image.description }}</p>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>
+<div class="modal-footer">
+  <ngb-rating [(rate)]="data.ups"></ngb-rating>
+  <hr />
+  <pre>Views: <b>{{data.views}}</b></pre>
+
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    (click)="activeModal.close('Close click')"
+  >
+    Close
+  </button>
+</div>
