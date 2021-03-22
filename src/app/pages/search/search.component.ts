@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageSearchService } from '../../services/image-search.service';
+import { ImageSearchService } from 'src/app/services/image-search.service';
 
 @Component({
-  selector: 'app-image-search',
-  templateUrl: './image-search.component.html',
-  styleUrls: ['./image-search.component.css'],
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
 })
-export class ImageSearchComponent implements OnInit {
+export class SearchComponent implements OnInit {
+
   searchData;
   perPage: any;
   data = [];
@@ -20,7 +21,6 @@ export class ImageSearchComponent implements OnInit {
   }
 
   search(): void {
-    console.log(`search: ${this.searchData}`);
     this.imageSearchService
       .getdata(this.searchData, null, null, null)
       .subscribe(
@@ -33,4 +33,5 @@ export class ImageSearchComponent implements OnInit {
         }
       );
   }
+
 }

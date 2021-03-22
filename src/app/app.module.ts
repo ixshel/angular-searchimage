@@ -2,26 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ImageSearchComponent } from './components/image-search/image-search.component';
-import { ModalComponent } from './components/modal/modal.component';
+import { DetailsComponent } from './pages/details/details.component';
+import { SearchComponent } from './pages/search/search.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ImageSearchComponent,
-    ModalComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
-  ],
+  declarations: [AppComponent, DetailsComponent, SearchComponent],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
