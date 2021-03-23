@@ -1,27 +1,67 @@
-# SearchImage
+* Live App: https://angular-imagesearch.web.app
+  - Hosted in Firebase
+  - Deployed every-time there is a merge in firebase branch 
+  - Automate deploy with Github actions
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
+* Github repo: https://github.com/ixshel/angular-searchimage
+  - Gitflow : 
+    a) Main should be production
+    b) Firebase is my dev environment
 
-## Development server
+```     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+```    
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+Angular CLI: 11.2.5
+Node: 14.14.0
+OS: darwin x64
 
-## Code scaffolding
+Angular: 11.2.6
+... animations, common, compiler, compiler-cli, core, forms
+... localize, platform-browser, platform-browser-dynamic, router
+Ivy Workspace: Yes
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Package                         Version
+---------------------------------------------------------
+@angular-devkit/architect       0.1102.5
+@angular-devkit/build-angular   0.1102.5
+@angular-devkit/core            11.2.5
+@angular-devkit/schematics      11.2.5
+@angular/cli                    11.2.5
+@schematics/angular             11.2.5
+@schematics/update              0.1102.5
+rxjs                            6.6.6
+typescript                      4.0.7
+```
 
-## Build
+And used nginx to proxy pass the CORS with live preview since Im little lazy: \
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+server {
+        listen       80;
+        server_name  local.ixshel.com;
 
-## Running unit tests
+        # ng serve config
+        location / {
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+            proxy_pass http://127.0.0.1:4200;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
 
-## Running end-to-end tests
+            proxy_http_version 1.1;
+            proxy_cache_bypass $http_upgrade;
+        }
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To run it you just need to set your nginx similar to what I did and then run ```npm run start``` I modified the script to run without the host check
