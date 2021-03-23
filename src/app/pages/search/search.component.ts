@@ -9,7 +9,7 @@ import { DetailsComponent } from '../details/details.component';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
+  loader: Boolean = null;
   searchData;
   perPage: any;
   data = [];
@@ -31,14 +31,17 @@ export class SearchComponent implements OnInit {
   }
 
   search(): void {
+    this.loader = true
     this.imageSearchService
       .getdata(this.searchData, null, null, null)
       .subscribe(
         (response: any) => {
+          this.loader = null;
           console.log(response);
           this.data = response.data;
         },
         (error) => {
+          this.loader = null;
           console.log(error);
         }
       );
