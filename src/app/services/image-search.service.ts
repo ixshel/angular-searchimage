@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class ImageSearchService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getdata(search, page, sort, window): Observable<any> {
     const url = `https://api.imgur.com/3/gallery/search/${sort}/${window}/${page}/?q=${search}`;

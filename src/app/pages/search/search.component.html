@@ -1,67 +1,81 @@
 <div class="card-header main-search">
-    <div class="row">
-      <div class="col-12 col-md-3 col-xl-3">
-        <input
-          [(ngModel)]="searchData"
-          class="AutoFocus form-control"
-          placeholder="Type something..."
-          type="text"
-        />
-      </div>
-      <div class="ml-auto">
-        <input
-          type="button"
-          (click)="search()"
-          value="Search"
-          class="btn btn-primary search-btn"
-        />
-      </div>
+  <div class="row">
+    <div class="col-8 col-md-3 col-xl-3">
+      <input
+        [(ngModel)]="searchData"
+        class="AutoFocus form-control"
+        placeholder="Type something..."
+        type="text"
+      />
+    </div>
+    <div class="ml-auto">
+      <input
+        type="button"
+        (click)="search()"
+        value="Search"
+        class="btn btn-primary search-btn"
+      />
     </div>
   </div>
-  
-  <div class="container">
-    <div *ngIf="data.length > 0" class="row">
-      <p class="ml-auto">Items found: <span style="color: white" class="badge bg-success">{{ data.length }}</span></p>
+</div>
+
+<div *ngIf="loader" class="container">
+  <div class="d-flex justify-content-center mt-4">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
-    <div *ngIf="data.length > 0" class="card-columns">
-      <div *ngFor="let ele of data">
-        <div *ngIf="ele" style="margin-top: 10px" class="card">
-          <img
-            class="card-img-top"
-            *ngIf="ele.images && isImage(ele.images[0]?.type)"
-            [src]="ele.images[0].link"
-            alt="Card image cap"
-          />
-          <video
-            class="card-img-top"
-            *ngIf="ele.images && !isImage(ele.images[0]?.type)"
-            [src]="ele.images[0].link"
-            alt="Card image cap"
-            controls
-            preload="none"
-            [poster]="ele.images[0].gifv.substring(0, ele.images[0].gifv.length - 1)"
-          ></video>
-          <img
-            class="card-img-top"
-            *ngIf="!ele.images"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLbrFDVFpFny8ur3undAnHk8Zg2VOEVqXoaw&usqp=CAU"
-            alt="No image found"
-          />
-          <div class="card-body">
-            <h5 class="card-title">{{ ele.title }}</h5>
-            <!-- <a [routerLink]="['/details/:id']" class="btn btn-primary">Know more</a> -->
-            <a (click)="show_details(ele)" class="btn btn-primary">Details</a>
-          </div>
+  </div>
+</div>
+
+<div *ngIf="!loader" class="container">
+  <div class="text-center mt-4" *ngIf="!searchData">
+    <p>Hello, what are we searching today?</p>
+  </div>
+
+  <div *ngIf="data.length > 0" class="row">
+    <p class="ml-auto">
+      Items found:
+      <span style="color: white" class="badge bg-success">{{
+        data.length
+      }}</span>
+    </p>
+  </div>
+  <div *ngIf="data.length > 0" class="card-columns">
+    <div *ngFor="let ele of data">
+      <div *ngIf="ele" style="margin-top: 10px" class="card">
+        <img
+          class="card-img-top"
+          *ngIf="ele.images && isImage(ele.images[0]?.type)"
+          [src]="ele.images[0].link"
+          alt="Card image cap"
+        />
+        <video
+          class="card-img-top"
+          *ngIf="ele.images && !isImage(ele.images[0]?.type)"
+          [src]="ele.images[0].link"
+          alt="Card image cap"
+          controls
+          preload="none"
+          [poster]="
+            ele.images[0].gifv.substring(0, ele.images[0].gifv.length - 1)
+          "
+        ></video>
+        <img
+          class="card-img-top"
+          *ngIf="!ele.images"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLbrFDVFpFny8ur3undAnHk8Zg2VOEVqXoaw&usqp=CAU"
+          alt="No image found"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ ele.title }}</h5>
+          <!-- <a [routerLink]="['/details/:id']" class="btn btn-primary">Know more</a> -->
+          <a (click)="show_details(ele)" class="btn btn-primary">Details</a>
         </div>
       </div>
     </div>
-  
-    <div class="text-center mt-4" *ngIf="data.length === 0 && searchData">
-      <p class="warning">No data, please try with another search key</p>
-    </div>
-  
-    <div class="text-center mt-4" *ngIf="!searchData">
-      <p>Hello, what are we searching today?</p>
-    </div>
   </div>
-  
+
+  <div class="text-center mt-4" *ngIf="data.length === 0 && searchData">
+    <p class="warning">No data, please try with another search key</p>
+  </div>
+</div>
