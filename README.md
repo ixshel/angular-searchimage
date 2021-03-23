@@ -8,14 +8,15 @@
     a) Main should be production
     b) Firebase is my dev environment
 
-     _                      _                 ____ _     ___
+```     _                      _                 ____ _     ___
     / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
    / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
   / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
  /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
                 |___/
-    
+```    
 
+```
 Angular CLI: 11.2.5
 Node: 14.14.0
 OS: darwin x64
@@ -36,6 +37,7 @@ Package                         Version
 @schematics/update              0.1102.5
 rxjs                            6.6.6
 typescript                      4.0.7
+```
 
 And used nginx to proxy pass the CORS with live preview since Im little lazy: \
 
