@@ -64,4 +64,4 @@ server {
     }
 ```
 
-To run it you just need to set your nginx similar to what I did and then run ```npm run start`` I modified the script to run without the host check
+To run it you just need to set your nginx similar to what I did and then run ```npm run start``` I modified the script to run without the host check
